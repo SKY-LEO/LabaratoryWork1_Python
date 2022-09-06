@@ -1,4 +1,4 @@
-def exercise1():
+def task1():
     # Дано натуральное число.
     # Напишите программу, которая определяет, является ли
     # последовательность его цифр при просмотре
@@ -15,7 +15,7 @@ def exercise1():
         print("Убывает")
 
 
-def exercise2():
+def task2():
     # Посчитать, сколько пар (стоят рядом) верхнего и нижнего
     # регистра находится в веденном с клавиатуры слове. (Пример HjkLM- 1
     # пара нижнего, 1 пара верхнего), а также сколько гласных букв в слове.
@@ -36,7 +36,7 @@ def exercise2():
           "\n Гласных букв: ", count_vowel_letter)
 
 
-def exercise3():
+def task3():
     # Найдите сумму положительных элементов списка.
     # Найдите сумму элементов списка после первого нуля.
     # Если нулевых элементов нет в списке, то выведите «Сумму посчитать нельзя».
@@ -66,15 +66,39 @@ def exercise3():
         print("Сумма чисел после нуля: ", summary_after_zero)
     print("Теперь список выглядит так: ", input_list)
 
-def exercise4():
-    # Дана строка в виде случайной последовательности чисел от 0 до 9
+
+def task4():
+    # Дана строка в виде случайной последовательности чисел от 0 до 9.
     # Требуется создать словарь, который в качестве ключей будет
     # принимать данные числа (т. е. ключи будут типом int), а в качестве
     # значений – количество этих чисел в имеющейся последовательности
-    return 0
+    input_list = list(input("Введите строку: "))
+    for i in range(len(input_list)):
+        input_list[i] = int(input_list[i])
+    length = len(input_list)
+    dictionary = dict.fromkeys(input_list, length)
+    print("Словарь: ", dictionary)
 
 
-def exercise5():
+def description(*dictionary):
+    #for i in dictionary:
+    #print("Название: ", dictionary[0], "Описание: ")
+    #print(dictionary)
+    return
+
+def pricelist():
+    return
+
+def quantity():
+    return
+
+def allInfo():
+    return
+
+def purchase():
+    return
+
+def task5():
     # Реализуйте программу «Кондитерская», которая будет включать
     # в себя шесть пунктов меню. У вас есть словарь, где ключ – название
     # продукции (торт, пирожное, маффин и т.д.). Значение – список,
@@ -89,10 +113,39 @@ def exercise5():
     # программы. Посчитать цену выбранных товаров и сколько товаров
     # осталось в изначальном списке
     # 6. До свидания
-    return 0
+    cake = ['сахар, соль, маргарин', 2.6, 500]
+    brownie = ['сахар, соль, яйцо', 1.5, 80]
+    confectionery_menu = {'торт': cake, 'пирожное': brownie}
+    while True:
+        print("Выберите действие:\n 1. Просмотр описания: название - описание\n "
+              "2. Просмотр цены: название – цена\n "
+              "3. Просмотр количества: название – количество\n 4. Просмотр всей информации\n 5. Покупка\n "
+              "0. Выход из кондитерской")
+        variant = int(input("Выберите задание: "))
+        if variant > 5 or variant < 0:
+            print("Ошибка, введите число в заданном интервале!")
+        else:
+            match variant:
+                case 1:
+                    description(confectionery_menu)
+                    #print(confectionery_menu.keys())
+                case 2:
+                    pricelist()
+                case 3:
+                    quantity()
+                case 4:
+                    allInfo()
+                case 5:
+                    purchase()
+                case 0:
+                    print("До свидания!")
+                    break
+                case _:
+                    print("Ошибка!")
+                    return -1
 
 
-def exercise6():
+def task6():
     # Дан кортеж чисел. Определить количество положительных элементов
     counter = 0
     input_list = []
@@ -104,6 +157,7 @@ def exercise6():
         if input_tuple[i] > 0:
             counter += 1
     print("Количество положительных элементов: ", counter)
+
 
 def menu():
     while True:
@@ -117,17 +171,17 @@ def menu():
         else:
             match variant:
                 case 1:
-                    exercise1()
+                    task1()
                 case 2:
-                    exercise2()
+                    task2()
                 case 3:
-                    exercise3()
+                    task3()
                 case 4:
-                    exercise4()
+                    task4()
                 case 5:
-                    exercise5()
+                    task5()
                 case 6:
-                    exercise6()
+                    task6()
                 case 0:
                     break
                 case _:
