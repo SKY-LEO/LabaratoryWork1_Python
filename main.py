@@ -3,16 +3,16 @@ def task1():
     # Напишите программу, которая определяет, является ли
     # последовательность его цифр при просмотре
     # справа налево упорядоченной по убыванию
-    flag = 1
+    flag = True
     number = input("Введите натуральное число: ")
     if number.isdigit() is False:
         print("Строка состоит не из цифр!")
         return
     for i in range(len(number) - 1, 0, -1):
         if number[i] <= number[i - 1]:
-            flag = 0
+            flag = False
             break
-    if flag == 0:
+    if flag is False:
         print("Не убывает")
     else:
         print("Убывает")
