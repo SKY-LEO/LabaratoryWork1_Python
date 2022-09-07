@@ -90,7 +90,7 @@ def description(dictionary):
         print(key_name, "->", ''.join(val[0]))
 
 
-def priceList(dictionary):
+def price_list(dictionary):
     for key_name, val in dictionary.items():
         print(key_name, "->", val[1], "руб.")
 
@@ -100,7 +100,7 @@ def quantity(dictionary):
         print(key_name, "->", val[2], "грамм")
 
 
-def allInfo(dictionary):
+def all_info(dictionary):
     for key_name, val in dictionary.items():
         print(key_name, " -> ", ''.join(val[0]), ", ", val[1], " руб., ", val[2], " грамм", sep='')
 
@@ -157,11 +157,11 @@ def task5():
                 case 1:
                     description(confectionery_menu)
                 case 2:
-                    priceList(confectionery_menu)
+                    price_list(confectionery_menu)
                 case 3:
                     quantity(confectionery_menu)
                 case 4:
-                    allInfo(confectionery_menu)
+                    all_info(confectionery_menu)
                 case 5:
                     purchase(confectionery_menu)
                 case 0:
