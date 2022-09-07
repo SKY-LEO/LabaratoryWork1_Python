@@ -107,9 +107,6 @@ def all_info(dictionary):
 
 def purchase(dictionary):
     product = input("Введите название продукции: ")
-    # for key_name in dictionary.items():
-    #    if(key_name == product):
-    #        break
     var = dictionary.get(product)
     if var is None:
         print("Нет такого наименования!")
