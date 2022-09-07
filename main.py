@@ -5,6 +5,9 @@ def task1():
     # справа налево упорядоченной по убыванию
     flag = 1
     number = input("Введите натуральное число: ")
+    if number.isdigit() is False:
+        print("Строка состоит не из цифр!")
+        return
     for i in range(len(number) - 1, 0, -1):
         if number[i] <= number[i - 1]:
             flag = 0
@@ -32,8 +35,8 @@ def task2():
             count_vowel_letter += 1
     if input_string[len(input_string) - 1] in english_vowels or input_string[len(input_string) - 1] in russian_vowels:
         count_vowel_letter += 1
-    print("Итого:\n Пар нижнего регистра: ", count_lower, "\n Пар верхнего регистра: ", count_upper,
-          "\n Гласных букв: ", count_vowel_letter)
+    print("Итого:\n Пар нижнего регистра:", count_lower, "\n Пар верхнего регистра:", count_upper,
+          "\n Гласных букв:", count_vowel_letter)
 
 
 def task3():
@@ -59,12 +62,12 @@ def task3():
             input_list.pop(i)
             continue
         i += 1
-    print("Сумма чисел больше нуля: ", summary)
+    print("Сумма чисел больше нуля:", summary)
     if is_zero_exists == 0:
         print("Сумму посчитать нельзя, нет ни одного нуля")
     else:
-        print("Сумма чисел после нуля: ", summary_after_zero)
-    print("Теперь список выглядит так: ", input_list)
+        print("Сумма чисел после нуля:", summary_after_zero)
+    print("Теперь список выглядит так:", input_list)
 
 
 def task4():
@@ -72,31 +75,56 @@ def task4():
     # Требуется создать словарь, который в качестве ключей будет
     # принимать данные числа (т. е. ключи будут типом int), а в качестве
     # значений – количество этих чисел в имеющейся последовательности
-    input_list = list(input("Введите строку: "))
-    for i in range(len(input_list)):
-        input_list[i] = int(input_list[i])
+    input_list = input("Введите строку: ")
+    if input_list.isdigit() is False:
+        print("Строка состоит не из цифр!")
+        return
+    input_list = [int(n) for n in input_list]
     length = len(input_list)
     dictionary = dict.fromkeys(input_list, length)
     print("Словарь: ", dictionary)
 
 
-def description(*dictionary):
-    #for i in dictionary:
-    #print("Название: ", dictionary[0], "Описание: ")
-    #print(dictionary)
-    return
+def description(dictionary):
+    for key_name, val in dictionary.items():
+        print(key_name, "->", ''.join(val[0]))
 
-def pricelist():
-    return
 
-def quantity():
-    return
+def priceList(dictionary):
+    for key_name, val in dictionary.items():
+        print(key_name, "->", val[1], "руб.")
 
-def allInfo():
-    return
 
-def purchase():
-    return
+def quantity(dictionary):
+    for key_name, val in dictionary.items():
+        print(key_name, "->", val[2], "грамм")
+
+
+def allInfo(dictionary):
+    for key_name, val in dictionary.items():
+        print(key_name, " -> ", ''.join(val[0]), ", ", val[1], " руб., ", val[2], " грамм", sep='')
+
+
+def purchase(dictionary):
+    product = input("Введите название продукции: ")
+    # for key_name in dictionary.items():
+    #    if(key_name == product):
+    #        break
+    var = dictionary.get(product)
+    if var is None:
+        print("Нет такого наименования!")
+        return
+    amount = int(input("Введите количество в граммах: "))
+    if amount <= 0:
+        print("Отрицательное количество!")
+        return
+    if amount > var[2]:
+        print("Нет в наличии столько продукции!\nЕсть только", var[2], "грамм!")
+        return
+    summary = var[1] * amount / 100
+    var[2] -= amount
+    print("Приобретено продукции на", summary, "руб.")
+
 
 def task5():
     # Реализуйте программу «Кондитерская», которая будет включать
@@ -113,8 +141,8 @@ def task5():
     # программы. Посчитать цену выбранных товаров и сколько товаров
     # осталось в изначальном списке
     # 6. До свидания
-    cake = ['сахар, соль, маргарин', 2.6, 500]
-    brownie = ['сахар, соль, яйцо', 1.5, 80]
+    cake = [["сахар, соль, маргарин"], 2.6, 500]
+    brownie = [["сахар, соль, яйцо"], 1.5, 80]
     confectionery_menu = {'торт': cake, 'пирожное': brownie}
     while True:
         print("Выберите действие:\n 1. Просмотр описания: название - описание\n "
@@ -128,15 +156,14 @@ def task5():
             match variant:
                 case 1:
                     description(confectionery_menu)
-                    #print(confectionery_menu.keys())
                 case 2:
-                    pricelist()
+                    priceList(confectionery_menu)
                 case 3:
-                    quantity()
+                    quantity(confectionery_menu)
                 case 4:
-                    allInfo()
+                    allInfo(confectionery_menu)
                 case 5:
-                    purchase()
+                    purchase(confectionery_menu)
                 case 0:
                     print("До свидания!")
                     break
@@ -153,15 +180,15 @@ def task6():
     for i in range(count):
         input_list.append(int(input("Введите число: ")))
     input_tuple = tuple(input_list)
-    for i in range(len(input_tuple)):
-        if input_tuple[i] > 0:
+    for element in input_tuple:
+        if element > 0:
             counter += 1
     print("Количество положительных элементов: ", counter)
 
 
 def menu():
     while True:
-        print("Список заданий:\n 1. Определение убывания/возрастания\n "
+        print("Список заданий:\n 1. Определение убывания\n "
               "2. Определение количества пар букв верхнего и нижнего регистра\n "
               "3. Найти сумму положительных элементов списка\n 4. Создать словарь\n 5. Кондитерская\n "
               "6. Кортеж чисел\n 0. Выход")
