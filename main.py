@@ -31,9 +31,10 @@ def task2():
             count_lower += 1
         elif input_string[i].isupper() and input_string[i + 1].isupper():
             count_upper += 1
-        if input_string[i] in english_vowels or input_string[i] in russian_vowels:
+        if input_string[i].lower() in english_vowels or input_string[i].lower() in russian_vowels:
             count_vowel_letter += 1
-    if input_string[len(input_string) - 1] in english_vowels or input_string[len(input_string) - 1] in russian_vowels:
+    if input_string[len(input_string) - 1].lower() in english_vowels \
+            or input_string[len(input_string) - 1].lower() in russian_vowels:
         count_vowel_letter += 1
     print("Итого:\n Пар нижнего регистра:", count_lower, "\n Пар верхнего регистра:", count_upper,
           "\n Гласных букв:", count_vowel_letter)
@@ -80,14 +81,19 @@ def task4():
         print("Строка состоит не из цифр!")
         return
     input_list = [int(n) for n in input_list]
-    length = len(input_list)
-    dictionary = dict.fromkeys(input_list, length)
+    dictionary = dict.fromkeys(input_list)
+    for key_name, val in dictionary.items():
+        counter = 0
+        for k in input_list:
+            if k == key_name:
+                counter += 1
+        dictionary[key_name] = counter
     print("Словарь: ", dictionary)
 
 
 def description(dictionary):
     for key_name, val in dictionary.items():
-        print(key_name, "->", ''.join(val[0]))
+        print(key_name, "->", "".join(val[0]))
 
 
 def price_list(dictionary):
@@ -102,7 +108,7 @@ def quantity(dictionary):
 
 def all_info(dictionary):
     for key_name, val in dictionary.items():
-        print(key_name, " -> ", ''.join(val[0]), ", ", val[1], " руб., ", val[2], " грамм", sep='')
+        print(key_name, " -> ", "".join(val[0]), ", ", val[1], " руб., ", val[2], " грамм", sep='')
 
 
 def purchase(dictionary):
@@ -140,7 +146,7 @@ def task5():
     # 6. До свидания
     cake = [["сахар, соль, маргарин"], 2.6, 500]
     brownie = [["сахар, соль, яйцо"], 1.5, 80]
-    confectionery_menu = {'торт': cake, 'пирожное': brownie}
+    confectionery_menu = {"торт": cake, "пирожное": brownie}
     while True:
         print("Выберите действие:\n 1. Просмотр описания: название - описание\n "
               "2. Просмотр цены: название – цена\n "
